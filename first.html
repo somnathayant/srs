@@ -1,0 +1,62 @@
+<html>
+	<head>
+		<title>Ajax practice 2</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	</head>
+	<body>
+		
+		<div class="container">
+			<br/>
+			<div class="panel panel-default">
+				<div class="panel-heading">Login </div>
+				<div class="panel-body">
+					Username <input type="textbox" id="userid" placeholder="Username"><br/>
+					<div id="username"></div>
+					<br/><br/>
+					
+						Password <input type="password" placeholder="Password" id="password">
+					<div id="passwd"></div>
+					<br/><br/>
+					<button type="submit" onclick="return done()"> Submit
+				</div>
+			</div>
+		</div>
+
+		<script>
+			var userid = document.getElementById("userid");
+			var username = document.getElementById("username");
+			var password = document.getElementById("password");
+			var passwd = document.getElementById("passwd");
+			
+			function done()
+			{
+				if ((isNaN(userid.value) == false) || (userid.value.length > 7) || ((userid.value != "User") & (userid.value != "Admin")))
+				{
+					username.innerHTML = "Username invalid";
+					username.style.color = "red";
+					userid.style.borderColor = "red";
+				}
+
+				else if(password.value.length != 5)
+				{
+					passwd.innerHTML = "Password invalid";
+					passwd.style.color = "red";
+					password.style.borderColor = "red";
+				}
+				else
+				{
+					setTimeout(function() {window.location = "home.html" });
+				}
+
+				localStorage.setItem("username", userid.value);
+			}
+		
+		
+		
+		</script>
+	    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+	</body>
+</html>

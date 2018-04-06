@@ -1,0 +1,371 @@
+<html>
+	<head>
+		<title>Home Page</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+	
+		 <div class="container">
+			<h2>Welcome to the home page!</h2>		
+
+			<div class="panel panel-default">
+					<div class="panel-heading"><b>Employees List</b>&nbsp; &nbsp;
+						<button type="btn btn-primary" data-target="#myModal" data-toggle="modal">Modal button</button>
+					</div>
+					<div class="panel-body">
+						<div id="link" >
+							<a onclick="return manage()">Link</a>
+						</div>
+					</div>    
+
+
+			</div> 
+
+			<div id="myModal" class="modal fade" role="dialog">
+  				<div class="modal-dialog">			
+    				<div class="modal-content">
+						<div class="modal-header">
+			  				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			 				<h4 class="modal-title">Employee Registration form</h4>
+						</div>
+						<div class="modal-body">
+								<form class="form-inline" name="myForm" id="formid" method="post" onsubmit="return validationForm(event)">
+										Name &nbsp;&nbsp;&nbsp;<input type="textbox" id="nameForm" placeholder="Name" onblur="return nameFormBlur()"><br/>
+										<div id="nameFormSec"></div><br/>
+										Mobile &nbsp;&nbsp;<input type="textbox" id="mobileForm" placeholder="Mobile Number" onblur="return mobileFormBlur()"><br/>
+										<div id="mobileFormSec"></div><br/>
+										Email &nbsp;&nbsp;&nbsp;   <input type="textbox" id="emailForm" placeholder="Email Id" onblur="return emailFormBlur()"><br/>
+										<div id="emailFormSec"></div><br/>
+										State&nbsp;&nbsp;&nbsp;&nbsp;  <input type="textbox" id="stateForm" placeholder="State" onblur="return stateFormBlur()"><br>
+										<div id="stateFormSec"></div><br/>
+										City &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="textbox" id="cityForm" placeholder="City" onblur="return cityFormBlur()">
+										<div id="cityFormSec"></div><br/>
+										<br/>
+										<button type="submit" value="submit">Submit</button>
+									</form>
+						</div>
+						<div class="modal-footer">
+			  				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+		 			 </div>
+	  				</div>
+	 			</div>
+				  
+
+			<form class="form-inline" name="myForm" id="formid" method="post" onsubmit="return validation(event)">
+				Name &nbsp;&nbsp;&nbsp;<input type="textbox" id="name" placeholder="Name" onblur="return nameBlur()"><br/>
+				<div id="nameSec"></div><br/>
+				Mobile &nbsp;&nbsp;<input type="textbox" id="mobile" placeholder="Mobile Number" onblur="return mobileBlur()"><br/>
+				<div id="mobileSec"></div><br/>
+				Email &nbsp;&nbsp;&nbsp;   <input type="textbox" id="email" placeholder="Email Id" onblur="return emailBlur()"><br/>
+				<div id="emailSec"></div><br/>
+				State&nbsp;&nbsp;&nbsp;&nbsp;  <input type="textbox" id="state" placeholder="State" onblur="return stateBlur()"><br>
+				<div id="stateSec"></div><br/>
+				City &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="textbox" id="city" placeholder="City" onblur="return cityBlur()">
+				<div id="citySec"></div><br/>
+				<br/>
+				<button type="submit" value="submit" >Submit</button>
+			</form>
+		</div>
+		
+		<script>
+			var namebox = document.getElementById('name');
+			var nameSec = document.getElementById('nameSec');
+
+			var mobilebox = document.getElementById('mobile');
+			var mobileSec = document.getElementById('mobileSec');
+
+			var emailbox = document.getElementById('email');
+			var emailSec = document.getElementById('emailSec');
+
+			var statebox = document.getElementById('state');
+			var stateSec = document.getElementById('stateSec');
+
+			var citybox = document.getElementById('city');
+			var citySec = document.getElementById('citySec');	
+
+								
+			//Page validation
+			function validation(event)
+			{
+				if((namebox.value.length < 5) || (namebox.value.length > 15) || (namebox.value.length == 0) || (isNaN(namebox.value) == false))
+				{
+					nameSec.innerHTML = "Invalid Name";
+					nameSec.style.color = "red";
+					namebox.style.borderColor ="red";
+					event.preventDefault();
+				}
+			
+
+				else if((mobilebox.value.length != 12) || (isNaN(mobilebox.value) == true) || (mobilebox.value.length == 0))
+				{
+					mobileSec.innerHTML = "Invalid Phone Number";
+					mobileSec.style.color = "red";
+					mobilebox.style.borderColor ="red";
+					event.preventDefault();
+				}
+			
+
+				else if((emailbox.value.length > 15) || (isNaN(emailbox.value) == false) || (emailbox.value.length == 0)   )
+				{
+					emailSec.innerHTML = "Invalid Email ID";
+					emailSec.style.color = "red";
+					emailbox.style.borderColor ="red";
+					event.preventDefault();
+				}				
+			
+				else if((statebox.value.length > 15) || (isNaN(statebox.value) == false) || (statebox.value.length == 0)   )
+				{
+					stateSec.innerHTML = "Invalid State";
+					stateSec.style.color = "red";
+					statebox.style.borderColor ="red";	
+					event.preventDefault();
+				}								
+			
+				else if((citybox.value.length > 15) || (isNaN(citybox.value) == false) || (citybox.value.length == 0)   )
+				{
+					citySec.innerHTML = "Invalid City";
+					citySec.style.color = "red";
+					citybox.style.borderColor ="red";	
+					event.preventDefault();
+				}	
+
+				else{
+					return true;
+				}							
+			}
+
+			function nameBlur(){
+				if((namebox.value.length < 5) || (namebox.value.length > 15) || (namebox.value.length == 0) || (isNaN(namebox.value) == false))
+				{
+										
+					nameSec.innerHTML = "Invalid Name";
+					nameSec.style.color = "red";
+					namebox.style.borderColor ="red";
+										
+				}				
+				else{
+					nameSec.innerHTML = "";
+					namebox.style.borderColor ="";
+				}
+			}
+
+			function mobileBlur(){
+				if((mobilebox.value.length != 12) || (isNaN(mobilebox.value) == true) || (mobilebox.value.length == 0))
+				{
+					mobileSec.innerHTML = "Invalid Phone Number";
+					mobileSec.style.color = "red";
+					mobilebox.style.borderColor ="red";
+					
+				}	
+				else{
+					mobileSec.innerHTML = "";
+					mobilebox.style.borderColor ="";
+				}	
+			}
+
+			function emailBlur(){
+				if((emailbox.value.length > 15) || (isNaN(emailbox.value) == false) || (emailbox.value.length == 0)   )
+				{
+					emailSec.innerHTML = "Invalid Email ID";
+					emailSec.style.color = "red";
+					emailbox.style.borderColor ="red";
+				
+				}				
+				else{
+					emailSec.innerHTML = "";
+					emailbox.style.borderColor ="";
+				}
+			}
+
+			function stateBlur(){
+				if((statebox.value.length > 15) || (isNaN(statebox.value) == false) || (statebox.value.length == 0)   )
+				{
+					stateSec.innerHTML = "Invalid State";
+					stateSec.style.color = "red";
+					statebox.style.borderColor ="red";	
+					
+				}		
+				else{
+					stateSec.innerHTML = "";
+					statebox.style.borderColor ="";
+				}
+			}
+
+			function cityBlur(){
+				if((citybox.value.length > 15) || (isNaN(citybox.value) == false) || (citybox.value.length == 0)   )
+				{
+					citySec.innerHTML = "Invalid City";
+					citySec.style.color = "red";
+					citybox.style.borderColor ="red";	
+					
+				}	
+				else{
+					citySec.innerHTML = "";
+					citybox.style.borderColor ="";
+				}
+			}	
+
+			//Page validation ends
+
+			//Modal validation begins
+
+			var nameFormbox = document.getElementById('nameForm');
+			var nameFormSec = document.getElementById('nameFormSec');
+
+			var mobileFormbox = document.getElementById('mobileForm');
+			var mobileFormSec = document.getElementById('mobileFormSec');
+
+			var emailFormbox = document.getElementById('emailForm');
+			var emailFormSec = document.getElementById('emailFormSec');
+
+			var stateFormbox = document.getElementById('stateForm');
+			var stateFormSec = document.getElementById('stateFormSec');
+
+			var cityFormbox = document.getElementById('cityForm');
+			var cityFormSec = document.getElementById('cityFormSec');	
+
+			function validationForm(event)
+			{
+				if((nameFormbox.value.length < 5) || (nameFormbox.value.length > 15) || (nameFormbox.value.length == 0) || (isNaN(nameFormbox.value) == false))
+				{
+					nameFormSec.innerHTML = "Invalid Name";
+					nameFormSec.style.color = "red";
+					nameFormbox.style.borderColor ="red";
+					event.preventDefault();
+				}
+			
+
+				else if((mobileFormbox.value.length != 12) || (isNaN(mobileFormbox.value) == true) || (mobileFormbox.value.length == 0))
+				{
+					mobileFormSec.innerHTML = "Invalid Phone Number";
+					mobileFormSec.style.color = "red";
+					mobileFormbox.style.borderColor ="red";
+					event.preventDefault();
+				}
+			
+
+				else if((emailFormbox.value.length > 15) || (isNaN(emailFormbox.value) == false) || (emailFormbox.value.length == 0)   )
+				{
+					emailFormSec.innerHTML = "Invalid Email ID";
+					emailFormSec.style.color = "red";
+					emailFormbox.style.borderColor ="red";
+					event.preventDefault();
+				}				
+			
+				else if((stateFormbox.value.length > 15) || (isNaN(stateFormbox.value) == false) || (stateFormbox.value.length == 0)   )
+				{
+					stateFormSec.innerHTML = "Invalid State";
+					stateFormSec.style.color = "red";
+					stateFormbox.style.borderColor ="red";	
+					event.preventDefault();
+				}								
+			
+				else if((cityFormbox.value.length > 15) || (isNaN(cityFormbox.value) == false) || (cityFormbox.value.length == 0)   )
+				{
+					cityFormSec.innerHTML = "Invalid City";
+					cityFormSec.style.color = "red";
+					cityFormbox.style.borderColor ="red";	
+					event.preventDefault();
+				}	
+
+				else{
+					return true;
+				}							
+			}
+
+			function nameFormBlur(){
+				if((nameFormbox.value.length < 5) || (nameFormbox.value.length > 15) || (nameFormbox.value.length == 0) || (isNaN(nameFormbox.value) == false))
+				{
+										
+					nameFormSec.innerHTML = "Invalid Name";
+					nameFormSec.style.color = "red";
+					nameFormbox.style.borderColor ="red";
+										
+				}				
+				else{
+					nameFormSec.innerHTML = "";
+					nameFormbox.style.borderColor ="";
+				}
+			}
+
+			function mobileFormBlur(){
+				if((mobileFormbox.value.length != 12) || (isNaN(mobileFormbox.value) == true) || (mobileFormbox.value.length == 0))
+				{
+					mobileFormSec.innerHTML = "Invalid Phone Number";
+					mobileFormSec.style.color = "red";
+					mobileFormbox.style.borderColor ="red";
+					
+				}	
+				else{
+					mobileFormSec.innerHTML = "";
+					mobileFormbox.style.borderColor ="";
+				}	
+			}
+
+			function emailFormBlur(){
+				if((emailFormbox.value.length > 15) || (isNaN(emailFormbox.value) == false) || (emailFormbox.value.length == 0)   )
+				{
+					emailFormSec.innerHTML = "Invalid Email ID";
+					emailFormSec.style.color = "red";
+					emailFormbox.style.borderColor ="red";
+				
+				}				
+				else{
+					emailFormSec.innerHTML = "";
+					emailFormbox.style.borderColor ="";
+				}
+			}
+
+			function stateFormBlur(){
+				if((stateFormbox.value.length > 15) || (isNaN(stateFormbox.value) == false) || (stateFormbox.value.length == 0)   )
+				{
+					stateFormSec.innerHTML = "Invalid State";
+					stateFormSec.style.color = "red";
+					stateFormbox.style.borderColor ="red";	
+					
+				}		
+				else{
+					stateFormSec.innerHTML = "";
+					stateFormbox.style.borderColor ="";
+				}
+			}
+
+			function cityFormBlur(){
+				if((cityFormbox.value.length > 15) || (isNaN(cityFormbox.value) == false) || (cityFormbox.value.length == 0)   )
+				{
+					cityFormSec.innerHTML = "Invalid City";
+					cityFormSec.style.color = "red";
+					cityFormbox.style.borderColor ="red";	
+					
+				}	
+				else{
+					cityFormSec.innerHTML = "";
+					cityFormbox.style.borderColor ="";
+				}
+			}	
+
+
+
+			//Modal validation ends
+
+			function manage(){
+				if(localStorage.username == "Admin")
+				{
+					setTimeout(function() {window.location = "table.html" });
+				}
+				else{
+					setTimeout(function() {window.location = "panel.html" });
+				}
+			}		
+			
+		</script>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+	</body>
+</html>
